@@ -1,0 +1,21 @@
+function [] = aurora_plot_jug(t05)
+tea_jug_height = 20;
+tea_jug_base = 4;
+tea_jug_thickness = 10;
+tea_jug_i=[-1;0;0]; %enter x of t05
+tea_jug_j=[0;0;-1]; %enter y of t05
+tea_jug_k=[0;-1;0]; %enter z of t05
+tea_jug_i=t05(1:3,1); %enter x of t05
+tea_jug_j=t05(1:3,2); %enter y of t05
+tea_jug_k=t05(1:3,3); %enter z of t05
+centre = [t05(1:3,4)]+(2.2*tea_jug_k);
+A=centre-tea_jug_base/2*tea_jug_i+tea_jug_height/2*tea_jug_j-tea_jug_base/2*tea_jug_k;
+B=centre+tea_jug_base/2*tea_jug_i+tea_jug_height/2*tea_jug_j-tea_jug_base/2*tea_jug_k;
+C=centre-tea_jug_base/2*tea_jug_i+tea_jug_height/2*tea_jug_j+tea_jug_base/2*tea_jug_k;
+D=centre-tea_jug_thickness/2*tea_jug_i-tea_jug_height/2*tea_jug_j-tea_jug_thickness/2*tea_jug_k;
+E=centre-tea_jug_thickness/2*tea_jug_i-tea_jug_height/2*tea_jug_j+tea_jug_thickness/2*tea_jug_k;
+F=centre+tea_jug_thickness/2*tea_jug_i-tea_jug_height/2*tea_jug_j-tea_jug_thickness/2*tea_jug_k;
+G=centre+tea_jug_base/2*tea_jug_i+tea_jug_height/2*tea_jug_j+tea_jug_base/2*tea_jug_k;
+H=centre+tea_jug_thickness/2*tea_jug_i-tea_jug_height/2*tea_jug_j+tea_jug_thickness/2*tea_jug_k;
+P=[A';B';F';H';G';C';A';D';E';H';F';D';E';C';G';B'];
+plot3(P(:,1),P(:,2),P(:,3),'r','LineWidth',7)
